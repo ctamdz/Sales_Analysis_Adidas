@@ -37,10 +37,10 @@ Sale_analysis_adidas/
 ## 📸 Một số ảnh minh họa
 ### 📊 Power BI Dashboard
 
-![Dashboard minh họa](screenshots/dashboard1.png)
-![Dashboard minh họa](screenshots/dashboard2.png)
-![Dashboard minh họa](screenshots/dashboard3.png)
+![Dashboard minh họa](screenshots/dashboard1.png.png)
+![Dashboard minh họa](screenshots/dashboard2.png.png)
+![Dashboard minh họa](screenshots/dashboard3.png.png)
 
 ### 🧱 Mô hình Cube trong SSAS
 
-![Cube SSAS](screenshots/cube_structure.png)
+![Cube SSAS](screenshots/cube_structure.png.png)
