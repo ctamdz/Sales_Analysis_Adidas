@@ -1,0 +1,741 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/31/2025 3:47:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-MSF24OBN"
+  DTS:CreatorName="LAPTOP-MSF24OBN\PC"
+  DTS:DTSID="{911E35A3-3EEB-4452-99AC-1D915175A997}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{F519FC62-5708-4EEA-9BF1-ED305986A74E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{ED9A3699-35CC-45B1-9058-28C0E0C21519}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\kho_du_lieu_va_he_thong_ra_quyet_dinh\salesAdidas\Adidas US Sales Datasets.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-MSF24OBN\SQLEXPRESS.adidasSales]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6BF9BE04-B3B2-4C16-9FCF-898F072E1503}"
+      DTS:ObjectName="LAPTOP-MSF24OBN\SQLEXPRESS.adidasSales">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-MSF24OBN\SQLEXPRESS;Initial Catalog=adidasSales;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{6BF9BE04-B3B2-4C16-9FCF-898F072E1503}LAPTOP-MSF24OBN\SQLEXPRESS.adidasSales;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Loading data from excel file into Staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{130B6BB7-786C-4F98-AEF8-6C6422057DFD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Loading data from excel file into Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Loading data from excel file into Staging\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Data Sales Adidas$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading data from excel file into Staging\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Retailer]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer]"
+                      name="Retailer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer ID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Retailer ID]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer ID]"
+                      name="Retailer ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Invoice Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice Date]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Invoice Date]"
+                      name="Invoice Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[State]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[City]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Product]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Price per Unit]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Price per Unit]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Price per Unit]"
+                      name="Price per Unit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Units Sold]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Units Sold]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Units Sold]"
+                      name="Units Sold"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Total Sales]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Total Sales]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Total Sales]"
+                      name="Total Sales"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Profit]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operating Profit]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Profit]"
+                      name="Operating Profit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Margin]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operating Margin]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Margin]"
+                      name="Operating Margin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Sales Method]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Method]"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Sales Method]"
+                      name="Sales Method"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Retailer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Retailer" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Retailer ID]"
+                      dataType="r8"
+                      name="Retailer ID" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Invoice Date]"
+                      dataType="date"
+                      name="Invoice Date" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Price per Unit]"
+                      dataType="cy"
+                      name="Price per Unit" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Units Sold]"
+                      dataType="r8"
+                      name="Units Sold" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Total Sales]"
+                      dataType="cy"
+                      name="Total Sales" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operating Profit]"
+                      dataType="cy"
+                      name="Operating Profit" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Operating Margin]"
+                      dataType="r8"
+                      name="Operating Margin" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Method]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sales Method" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Retailer]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Retailer]"
+                      name="Retailer" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Retailer ID]"
+                      dataType="r8"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Retailer ID]"
+                      name="Retailer ID" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice Date]"
+                      dataType="date"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Invoice Date]"
+                      name="Invoice Date" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Price per Unit]"
+                      dataType="cy"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Price per Unit]"
+                      name="Price per Unit" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Units Sold]"
+                      dataType="r8"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Units Sold]"
+                      name="Units Sold" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Total Sales]"
+                      dataType="cy"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Total Sales]"
+                      name="Total Sales" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Operating Profit]"
+                      dataType="cy"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Operating Profit]"
+                      name="Operating Profit" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Operating Margin]"
+                      dataType="r8"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Operating Margin]"
+                      name="Operating Margin" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Method]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Method]"
+                      name="Sales Method" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loading data from excel file into Staging\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loading data from excel file into Staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-MSF24OBN\SQLEXPRESS.adidasSales]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-MSF24OBN\SQLEXPRESS.adidasSales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Retailer]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Retailer"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retailer]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Retailer ID]"
+                      cachedDataType="r8"
+                      cachedName="Retailer ID"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retailer ID]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Retailer ID]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Invoice Date]"
+                      cachedDataType="date"
+                      cachedName="Invoice Date"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Invoice Date]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="City"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Product]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Price per Unit]"
+                      cachedDataType="cy"
+                      cachedName="Price per Unit"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price per Unit]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Price per Unit]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Units Sold]"
+                      cachedDataType="r8"
+                      cachedName="Units Sold"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Units Sold]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Units Sold]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Total Sales]"
+                      cachedDataType="cy"
+                      cachedName="Total Sales"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Total Sales]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Total Sales]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Operating Profit]"
+                      cachedDataType="cy"
+                      cachedName="Operating Profit"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Operating Profit]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Profit]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Operating Margin]"
+                      cachedDataType="r8"
+                      cachedName="Operating Margin"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Operating Margin]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Operating Margin]" />
+                    <inputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sales Method]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sales Method"
+                      externalMetadataColumnId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sales Method]"
+                      lineageId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output].Columns[Sales Method]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retailer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Retailer" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Retailer ID]"
+                      dataType="i4"
+                      name="Retailer ID" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Invoice Date]"
+                      dataType="dbDate"
+                      name="Invoice Date" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="100"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="100"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="100"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price per Unit]"
+                      dataType="numeric"
+                      name="Price per Unit"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Units Sold]"
+                      dataType="i4"
+                      name="Units Sold" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Total Sales]"
+                      dataType="numeric"
+                      name="Total Sales"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Operating Profit]"
+                      dataType="numeric"
+                      name="Operating Profit"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Operating Margin]"
+                      dataType="numeric"
+                      name="Operating Margin"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sales Method]"
+                      dataType="wstr"
+                      length="100"
+                      name="Sales Method" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loading data from excel file into Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loading data from excel file into Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loading data from excel file into Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loading data from excel file into Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Loading data from excel file into Staging.Paths[Excel Source Output]"
+              endId="Package\Loading data from excel file into Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Loading data from excel file into Staging\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\Loading data from excel file into Staging"
+          TopLeft="112.14285738158,51.2352940727373" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Loading data from excel file into Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Loading data from excel file into Staging\OLE DB Destination"
+          TopLeft="539.285715433712,101.705882263792" />
+        <NodeLayout
+          Size="138.4,41.6"
+          Id="Package\Loading data from excel file into Staging\Excel Source"
+          TopLeft="243.571429089928,97.8823528553788" />
+        <EdgeLayout
+          Id="Package\Loading data from excel file into Staging.Paths[Excel Source Output]"
+          TopLeft="381.971429089928,120.594117559585">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157.314286343784,0"
+              Start="0,0"
+              End="149.814286343784,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="149.814286343784,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading data from excel file into Staging\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loading data from excel file into Staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

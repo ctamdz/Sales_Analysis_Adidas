@@ -1,0 +1,42 @@
+-- Tổng doanh thu theo từng năm
+SELECT d.Year, SUM(fs.TotalSales) AS TotalRevenue
+FROM FactSales fs
+JOIN DimDate d ON fs.DateID = d.DateID
+GROUP BY d.Year
+ORDER BY d.Year;
+
+-- Doanh thu theo sản phẩm
+SELECT p.Product, SUM(fs.TotalSales) AS TotalRevenue
+FROM FactSales fs
+JOIN DimProduct p ON fs.ProductID = p.ProductID
+GROUP BY p.Product
+ORDER BY TotalRevenue DESC;
+
+-- Doanh thu theo khu vực (Region)
+SELECT g.Region, SUM(fs.TotalSales) AS TotalRevenue
+FROM FactSales fs
+JOIN DimGeography g ON fs.GeographyID = g.GeographyID
+GROUP BY g.Region
+ORDER BY TotalRevenue DESC;
+
+-- Lợi nhuận theo phương thức bán hàng
+SELECT sm.SalesMethod, SUM(fs.OperatingProfit) AS TotalProfit
+FROM FactSales fs
+JOIN DimSalesMethod sm ON fs.SalesMethodID = sm.SalesMethodID
+GROUP BY sm.SalesMethod
+ORDER BY TotalProfit DESC;
+
+-- Số lượng sản phẩm bán được theo nhà bán lẻ
+SELECT r.Retailer, SUM(fs.UnitsSold) AS TotalUnits
+FROM FactSales fs
+JOIN DimRetailer r ON fs.RetailerID = r.RetailerID
+GROUP BY r.Retailer
+ORDER BY TotalUnits DESC;
+
+-- Doanh thu theo từng tháng trong năm 2021
+SELECT d.Month, SUM(fs.TotalSales) AS MonthlyRevenue
+FROM FactSales fs
+JOIN DimDate d ON fs.DateID = d.DateID
+WHERE d.Year = 2021
+GROUP BY d.Month
+ORDER BY d.Month;
