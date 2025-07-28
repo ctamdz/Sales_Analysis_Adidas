@@ -25,12 +25,13 @@ Phân tích dữ liệu bán hàng của Adidas nhằm:
 ---
 
 ## 📁 Cấu trúc thư mục
-Sale_analysis_adidas/
-├── SSIS/ # Gói ETL trong SSIS
-├── SSAS/ # Mô hình phân tích OLAP
-├── SOURCES DATA/ # Dữ liệu nguồn đầu vào
-├── SalesDashboard.pbix # Dashboard Power BI
-├── SQL QUERY.sql # Truy vấn phân tích
+``` Sale_analysis_adidas/
+├── SSIS/                       # Gói ETL trong SSIS
+├── SSAS/                       # Mô hình phân tích OLAP
+├── SOURCES DATA/              # Dữ liệu nguồn đầu vào
+├── SalesDashboard.pbix        # Dashboard Power BI
+├── SQL QUERY.sql              # Truy vấn phân tích
+```
 
 ---
 
